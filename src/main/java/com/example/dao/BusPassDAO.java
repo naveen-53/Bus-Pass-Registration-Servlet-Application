@@ -7,7 +7,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BusPassDAO {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(BusPassDAO.class);
 
 	public List<BusPass> findAll() throws Exception {
         Connection con = DBUtil.getConnection();
@@ -20,6 +25,7 @@ public class BusPassDAO {
             list.add(p);
         }
         con.close();
+        LOG.info("Select Query Executed");
         return list;
     }
 
@@ -45,7 +51,13 @@ public class BusPassDAO {
         ps.setString(3, p.getPassType());
         ps.setString(4, p.getStartDate());
         ps.setString(5, p.getEndDate());
-        ps.executeUpdate();
+        int row = ps.executeUpdate();
+        if(row!=0) {
+        	LOG.info("BusPass Values Inserted");
+        }
+        else {
+        	LOG.error("BusPass Values are not inserted into table");
+        }
         con.close();
     }
 
@@ -59,7 +71,13 @@ public class BusPassDAO {
         ps.setString(4, p.getStartDate());
         ps.setString(5, p.getEndDate());
         ps.setInt(6, p.getId());
-        ps.executeUpdate();
+        int row = ps.executeUpdate();
+        if(row!=0) {
+        	LOG.info(p.getName()+"'s pass updated");
+        }
+        else {
+        	LOG.error("BusPass Values doesn't updated");
+        }
         con.close();
     }
 
@@ -67,7 +85,13 @@ public class BusPassDAO {
         Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement("DELETE FROM bus_pass WHERE id=?");
         ps.setInt(1, id);
-        ps.executeUpdate();
+        int row = ps.executeUpdate();
+        if(row!=0) {
+        	LOG.info(id+"'s pass deleted");
+        }
+        else {
+        	LOG.error("BusPass Values doesn't deleted");
+        }
         con.close();
     }
 
