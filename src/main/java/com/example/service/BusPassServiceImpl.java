@@ -56,12 +56,18 @@ public class BusPassServiceImpl implements BusPassService {
         try {
             pass.setId(id);
             dao.update(pass);
-        } catch (Exception e) { throw new RuntimeException(e); }
+            LOG.info("BusPass Id : "+id+" Updated...");
+        } catch (Exception e) { 
+        	throw new RuntimeException(e); 
+        }
     }
 
     @Override
     public void delete(int id) {
-        try { dao.delete(id); }
+        try { 
+        	dao.delete(id); 
+        	LOG.info("BusPass Id : "+id+" Deleted..");
+        }
         catch (Exception e) { throw new RuntimeException(e); }
     }
 }
