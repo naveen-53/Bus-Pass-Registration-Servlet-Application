@@ -10,10 +10,16 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private final UserDAO dao = new UserDAO();
+    private static final Logger LOG = LoggerFactory.getLogger(LoginServlet.class);
+	private static final long serialVersionUID = 1L;
+	
+	private final UserDAO dao = new UserDAO();
     private final ObjectMapper mapper = new ObjectMapper();
 
     static class LoginRequest {
@@ -36,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user", user.getUsername());
                 session.setAttribute("role", user.getRole());
                 session.setMaxInactiveInterval(30 * 60);
-
+                LOG.info(login.username+" Logged in Successfully");
                 resp.setStatus(200);
                 resp.getWriter().write("Login Successful");
             } else {
@@ -45,6 +51,7 @@ public class LoginServlet extends HttpServlet {
             }
 
         } catch (Exception e) {
+        	LOG.error(login.username+" Login was Failed");
             resp.setStatus(500);
             resp.getWriter().write("Login Failed");
         }

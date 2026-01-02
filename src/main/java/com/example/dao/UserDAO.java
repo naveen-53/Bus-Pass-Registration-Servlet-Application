@@ -4,9 +4,15 @@ import com.example.model.User;
 import com.example.utils.DBUtil;
 import java.sql.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class UserDAO {
+	private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
+
 
     public User findByUsername(String username) throws Exception {
+    	LOG.info("called findByUsername");
         Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
                 "SELECT * FROM users WHERE username=?");
