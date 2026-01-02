@@ -89,5 +89,7 @@ The project uses:
 - SLF4J API
 - Logback implementation
 
+---
 
-
+## Liquibase
+- Used liquibase for version control for DB
