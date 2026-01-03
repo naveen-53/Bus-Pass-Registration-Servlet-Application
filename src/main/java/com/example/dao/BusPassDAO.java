@@ -42,57 +42,72 @@ public class BusPassDAO {
         return p;
     }
 
-    public void save(BusPass p) throws Exception {
-        Connection con = DBUtil.getConnection();
+    public void save(BusPass p) {
+        try(Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO bus_pass(name,email,pass_type,start_date,end_date) VALUES (?,?,?,?,?)");
-        ps.setString(1, p.getName());
-        ps.setString(2, p.getEmail());
-        ps.setString(3, p.getPassType());
-        ps.setString(4, p.getStartDate());
-        ps.setString(5, p.getEndDate());
-        int row = ps.executeUpdate();
-        if(row!=0) {
-        	LOG.info("BusPass Values Inserted");
-        }
-        else {
-        	LOG.error("BusPass Values are not inserted into table");
-        }
-        con.close();
+                "INSERT INTO bus_pass(name,email,pass_type,start_date,end_date) VALUES (?,?,?,?,?)")){
+        	
+        	ps.setString(1, p.getName());
+            ps.setString(2, p.getEmail());
+            ps.setString(3, p.getPassType());
+            ps.setString(4, p.getStartDate());
+            ps.setString(5, p.getEndDate());
+            int row = ps.executeUpdate();
+            if(row!=0) {
+            	LOG.info("BusPass Values Inserted");
+            }
+            else {
+            	LOG.error("BusPass Values are not inserted into table");
+            }
+            con.close();
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
 
-    public void update(BusPass p) throws Exception {
-        Connection con = DBUtil.getConnection();
+    public void update(BusPass p) {
+        try(Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
-                "UPDATE bus_pass SET name=?, email=?, pass_type=?, start_date=?, end_date=? WHERE id=?");
-        ps.setString(1, p.getName());
-        ps.setString(2, p.getEmail());
-        ps.setString(3, p.getPassType());
-        ps.setString(4, p.getStartDate());
-        ps.setString(5, p.getEndDate());
-        ps.setInt(6, p.getId());
-        int row = ps.executeUpdate();
-        if(row!=0) {
-        	LOG.info(p.getName()+"'s pass updated");
-        }
-        else {
-        	LOG.error("BusPass Values doesn't updated");
-        }
-        con.close();
+                "UPDATE bus_pass SET name=?, email=?, pass_type=?, start_date=?, end_date=? WHERE id=?")){
+        	
+        	ps.setString(1, p.getName());
+            ps.setString(2, p.getEmail());
+            ps.setString(3, p.getPassType());
+            ps.setString(4, p.getStartDate());
+            ps.setString(5, p.getEndDate());
+            ps.setInt(6, p.getId());
+            int row = ps.executeUpdate();
+            if(row!=0) {
+            	LOG.info(p.getName()+"'s pass updated");
+            }
+            else {
+            	LOG.error("BusPass Values doesn't updated");
+            }
+            con.close();
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
 
     public void delete(int id) throws Exception {
-        Connection con = DBUtil.getConnection();
-        PreparedStatement ps = con.prepareStatement("DELETE FROM bus_pass WHERE id=?");
-        ps.setInt(1, id);
-        int row = ps.executeUpdate();
-        if(row!=0) {
-        	LOG.info(id+"'s pass deleted");
+        try( Connection con = DBUtil.getConnection();
+        PreparedStatement ps = con.prepareStatement("DELETE FROM bus_pass WHERE id=?")){
+        	
+        	ps.setInt(1, id);
+            int row = ps.executeUpdate();
+            if(row!=0) {
+            	LOG.info(id+"'s pass deleted");
+            }
+            else {
+            	LOG.error("BusPass Values doesn't deleted");
+            }
+            con.close();
         }
-        else {
-        	LOG.error("BusPass Values doesn't deleted");
-        }
-        con.close();
+        
     }
 
     private BusPass map(ResultSet rs) throws Exception {

@@ -90,6 +90,11 @@
 
 		<plugins>
 			<plugin>
+			    <groupId>org.sonarsource.scanner.maven</groupId>
+			    <artifactId>sonar-maven-plugin</artifactId>
+			    <version>3.9.1.2184</version> <!-- Check Maven central for the latest version -->
+			</plugin>
+			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.27.0</version>

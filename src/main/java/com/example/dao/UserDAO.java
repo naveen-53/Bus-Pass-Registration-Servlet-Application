@@ -13,32 +13,38 @@ public class UserDAO {
 
     public User findByUsername(String username) throws Exception {
     	LOG.info("called findByUsername");
-        Connection con = DBUtil.getConnection();
+        try(Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
-                "SELECT * FROM users WHERE username=?");
-        ps.setString(1, username);
-        ResultSet rs = ps.executeQuery();
+                "SELECT * FROM users WHERE username=?")){
+        	
+        	ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
 
-        User u = null;
-        if (rs.next()) {
-            u = new User();
-            u.setId(rs.getInt("id"));
-            u.setUsername(rs.getString("username"));
-            u.setPassword(rs.getString("password"));
-            u.setRole(rs.getString("role"));
+            User u = null;
+            if (rs.next()) {
+                u = new User();
+                u.setId(rs.getInt("id"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setRole(rs.getString("role"));
+            }
+            con.close();
+            return u;
+        	
         }
-        con.close();
-        return u;
+        
     }
 
     public void save(User user) throws Exception {
-        Connection con = DBUtil.getConnection();
+        try(Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
-          "INSERT INTO users(username,password,role) VALUES(?,?,?)");
-        ps.setString(1, user.getUsername());
-        ps.setString(2, user.getPassword());
-        ps.setString(3, user.getRole());
-        ps.executeUpdate();
-        con.close();
+          "INSERT INTO users(username,password,role) VALUES(?,?,?)")){
+        	ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getRole());
+            ps.executeUpdate();
+            con.close();
+        }
+        
     }
 }
