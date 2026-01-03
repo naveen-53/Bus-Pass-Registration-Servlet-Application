@@ -92,4 +92,8 @@ The project uses:
 ---
 
 ## Liquibase
-- Used liquibase for version control for DB
+- Database Migrations: Managed via Liquibase using the master changelog located at src/main/resources/db/changelog-master.xml.
+- Execution: Migrations trigger automatically on application startup via the Servlet Listener configured in web.xml.
+- Development: To update the schema, add new changesets to the changelog directory before restarting the server.
+
+
