@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: Bus Pass Management API
+  description: API for managing users, authentication, and bus pass operations.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+
+  /register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterRequest'
+      responses:
+        '201':
+          description: User Registered
+        '500':
+          description: Registration failed
+
+  /login:
+    post:
+      tags: [Auth]
+      summary: Login and create session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login Successful
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: Session cookie
+        '401':
+          description: Invalid credentials
+        '500':
+          description: Login failed
+
+  /logout:
+    post:
+      tags: [Auth]
+      summary: Logout and destroy session
+      responses:
+        '200':
+          description: Logged out
+
+  /passes:
+    get:
+      tags: [BusPass]
+      summary: Get all bus passes
+      security:
+        - SessionAuth: []
+      responses:
+        '200':
+          description: List of bus passes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusPass'
+        '401':
+          description: Authentication Required
+        '500':
+          description: Server Error
+
+    post:
+      tags: [BusPass]
+      summary: Create a new bus pass
+      security:
+        - SessionAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusPassRequest'
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Authentication Required
+        '500':
+          description: Server Error
+
+  /passes/{id}:
+    get:
+      tags: [BusPass]
+      summary: Get bus pass by ID
+      security:
+        - SessionAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Bus pass or null if not found
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/BusPass'
+                  - type: string
+                    nullable: true
+        '401':
+          description: Authentication Required
+        '500':
+          description: Server Error
+
+    put:
+      tags: [BusPass]
+      summary: Update bus pass (ADMIN only)
+      security:
+        - SessionAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusPassRequest'
+      responses:
+        '200':
+          description: Updated
+        '401':
+          description: Authentication Required
+        '403':
+          description: Access Denied
+        '500':
+          description: Server Error
+
+    delete:
+      tags: [BusPass]
+      summary: Delete bus pass (ADMIN only)
+      security:
+        - SessionAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Deleted
+        '401':
+          description: Authentication Required
+        '403':
+          description: Access Denied
+        '500':
+          description: Server Error
+
+components:
+
+  securitySchemes:
+    SessionAuth:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+
+  schemas:
+
+    UserRegisterRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          example: username
+        password:
+          type: string
+          example: password
+        role:
+          type: string
+          example: USER
+
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          example: username
+        password:
+          type: string
+          example: password
+
+    BusPass:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: id
+        name:
+          type: string
+          example: naveen
+        email:
+          type: string
+          example: naveen123@gmail.com
+        passType:
+          type: string
+          example: AC
+        startDate:
+          type: string
+          example: 2026-01-01
+        endDate:
+          type: string
+          example: 2026-01-01
+
+    BusPassRequest:
+      type: object
+      required: [name, email, passType, startDate, endDate]
+      properties:
+        name:
+          type: string
+          example: naveen
+        email:
+          type: string
+          example: naveen123@gmail.com
+        passType:
+          type: string
+          example: AC
+        startDate:
+          type: string
+          example: 2026-01-01
+        endDate:
+          type: string
+          example: 2026-01-01
