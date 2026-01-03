@@ -33,6 +33,16 @@ public class AuthFilter implements Filter {
             resp.getWriter().write("Authentication Required");
             return;
         }
+        
+        String role = (String) session.getAttribute("role");
+        if(req.getMethod().equals("DELETE") || req.getMethod().equals("PUT")) {
+            if(!"ADMIN".equalsIgnoreCase(role)) {
+                resp.setStatus(403);
+                resp.getWriter().write("Access Denied");
+                LOG.error("access denied for user "+session.getAttribute("username"));
+                return;
+            }
+        }
 
         chain.doFilter(request, response);
     }

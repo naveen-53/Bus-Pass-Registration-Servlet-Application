@@ -35,7 +35,7 @@ class BusPassDAOTest {
     BusPassDAO dao;
 
     @Test
-    void testAllDAOMethods() throws Exception {
+    void testAllBuspassDAOMethods() throws Exception {
         try (MockedStatic<DBUtil> dbUtilMocked = mockStatic(DBUtil.class)) {
             dbUtilMocked.when(DBUtil::getConnection).thenReturn(connectionMock);
             
@@ -50,7 +50,7 @@ class BusPassDAOTest {
             when(preparedStatementMock.executeQuery()).thenReturn(resultSetMock);
             when(resultSetMock.next()).thenReturn(true);
             when(resultSetMock.getInt("id")).thenReturn(1);
-            when(resultSetMock.getString("name")).thenReturn("John");
+            when(resultSetMock.getString("name")).thenReturn("naveen");
             BusPass findResult = dao.findById(1);
             assertNotNull(findResult, "findById should return BusPass");
 

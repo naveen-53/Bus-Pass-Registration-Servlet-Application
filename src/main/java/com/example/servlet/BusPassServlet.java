@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 @WebServlet("/passes/*")
 public class BusPassServlet extends HttpServlet {
 	
-	Logger LOG = LoggerFactory.getLogger(BusPassServlet.class);
+	private static final Logger LOG = LoggerFactory.getLogger(BusPassServlet.class);
 
 	private static final long serialVersionUID = 1L;
 	private final BusPassService service = new BusPassServiceImpl();

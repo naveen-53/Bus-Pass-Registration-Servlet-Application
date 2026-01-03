@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Console Output -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Per-Class Log Files -->
+    <appender name="PER_CLASS" class="ch.qos.logback.classic.sift.SiftingAppender">
+
+        <!-- REQUIRED in Logback 1.5.x -->
+        <discriminator class="ch.qos.logback.classic.sift.LoggerNameBasedDiscriminator">
+            <key>logger</key>
+            <defaultValue>unknown</defaultValue>
+        </discriminator>
+
+        <sift>
+            <appender name="FILE-${logger}" class="ch.qos.logback.core.FileAppender">
+                <file>logs/${logger}/${logger}.log</file>
+                <append>true</append>
+
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+
+    </appender>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="PER_CLASS"/>
+    </root>
+
+</configuration>

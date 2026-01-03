@@ -1,7 +1,7 @@
 package com.example.model;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BusPassTest {
 
@@ -16,11 +16,11 @@ class BusPassTest {
         pass.setStartDate("2025-01-02");
         pass.setEndDate("2025-02-02");
         
-        assertEquals(1, pass.getId(), "getId should return set id value");
-        assertEquals("Naveen", pass.getName(), "getName should return set name");
-        assertEquals("naveen123@example.com", pass.getEmail(), "getEmail should return set email");
-        assertEquals("AC", pass.getPassType(), "getPassType should return set passType");
-        assertEquals("2025-01-02", pass.getStartDate(), "getStartDate should return set startDate");
-        assertEquals("2025-02-02", pass.getEndDate(), "getEndDate should return set endDate");
+        assertEquals(1, pass.getId());
+        assertEquals("Naveen", pass.getName());
+        assertEquals("naveen123@example.com", pass.getEmail());
+        assertEquals("AC", pass.getPassType());
+        assertEquals("2025-01-02", pass.getStartDate());
+        assertEquals("2025-02-02", pass.getEndDate());
     }
 }
