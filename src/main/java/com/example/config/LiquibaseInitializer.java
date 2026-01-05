@@ -18,34 +18,34 @@ import java.sql.SQLException;
 @WebListener
 public class LiquibaseInitializer implements ServletContextListener {
 
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        
-            try (Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/bus_pass_db",
-                    "root",
-                    "1234"
-            );
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
 
-            Database database = DatabaseFactory.getInstance()
-                    .findCorrectDatabaseImplementation(
-                            new JdbcConnection(connection)
-                    );
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Liquibase liquibase = new Liquibase(
-                    "db/changelog/db.changelog-master.xml",
-                    new ClassLoaderResourceAccessor(),
-                    database
-            )){
-            	liquibase.update();
+	        Connection connection = DriverManager.getConnection(
+	                "jdbc:mysql://localhost:3306/bus_pass_db",
+	                "root",
+	                "1234"
+	        );
 
-                System.out.println("Liquibase executed automatically!");
-            } catch (SQLException | LiquibaseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	        Database database = DatabaseFactory.getInstance()
+	                .findCorrectDatabaseImplementation(new JdbcConnection(connection));
+
+	        try (Liquibase liquibase = new Liquibase(
+	                "db/changelog/db.changelog-master.xml",
+	                new ClassLoaderResourceAccessor(),
+	                database
+	        )) {
+				liquibase.update();
 			}
 
-            
+	        System.out.println("Liquibase executed automatically!");
 
-    }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }
