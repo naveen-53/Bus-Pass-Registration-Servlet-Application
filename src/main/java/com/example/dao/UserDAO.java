@@ -11,7 +11,7 @@ public class UserDAO {
 	private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
 
 
-    public User findByUsername(String username) throws Exception {
+    public User findByUsername(String username) {
     	LOG.info("called findByUsername");
         try(Connection con = DBUtil.getConnection();
         PreparedStatement ps = con.prepareStatement(
@@ -31,8 +31,10 @@ public class UserDAO {
             con.close();
             return u;
         	
-        }
-        
+        } catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}        
     }
     
     public void save(User user) throws Exception {
