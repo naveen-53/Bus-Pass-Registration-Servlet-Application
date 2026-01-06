@@ -3,7 +3,10 @@ package com.example.dao;
 import com.example.model.BusPass;
 import com.example.utils.DBUtil;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,33 +17,44 @@ public class BusPassDAO {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(BusPassDAO.class);
 
-	public List<BusPass> findAll() throws Exception {
-        Connection con = DBUtil.getConnection();
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM bus_pass");
+    public List<BusPass> findAll() throws Exception {
 
         List<BusPass> list = new ArrayList<>();
-        while (rs.next()) {
-            BusPass p = map(rs);
-            list.add(p);
+
+        try (Connection con = DBUtil.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM bus_pass")) {
+
+            while (rs.next()) {
+                BusPass p = map(rs);
+                list.add(p);
+            }
+
+            LOG.info("Select Query Executed");
         }
-        con.close();
-        LOG.info("Select Query Executed");
+
         return list;
     }
 
+
     public BusPass findById(int id) throws Exception {
-        Connection con = DBUtil.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM bus_pass WHERE id=?");
-        ps.setInt(1, id);
-        ResultSet rs = ps.executeQuery();
 
-        BusPass p = null;
-        if (rs.next()) p = map(rs);
+        try (Connection con = DBUtil.getConnection();
+             PreparedStatement ps = con.prepareStatement(
+                     "SELECT * FROM bus_pass WHERE id = ?")) {
 
-        con.close();
-        return p;
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return map(rs);
+                }
+            }
+        }
+
+        return null;
     }
+
 
     public void save(BusPass p) {
         try(Connection con = DBUtil.getConnection();
@@ -61,8 +75,7 @@ public class BusPassDAO {
             }
             con.close();
         } catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            LOG.error(e.getMessage());
 		}
         
     }
@@ -87,8 +100,7 @@ public class BusPassDAO {
             }
             con.close();
         } catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            LOG.error(e.getMessage());
 		}
         
     }

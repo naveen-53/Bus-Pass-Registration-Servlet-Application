@@ -100,22 +100,27 @@
 			<plugin>
 			    <groupId>org.sonarsource.scanner.maven</groupId>
 			    <artifactId>sonar-maven-plugin</artifactId>
-			    <version>3.9.1.2184</version> <!-- Check Maven central for the latest version -->
+			    <version>3.9.1.2184</version>
 			</plugin>
+
 			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>4.27.0</version>
-				<configuration>
-					<outputChangeLogFile>
-						src/main/resources/db/changelog/db.changelog-master.xml</outputChangeLogFile>
-					<changeLogFile>
-						src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
-					<url>jdbc:mysql://localhost:3306/bus_pass_db</url>
-					<username>root</username>
-					<password>1234</password>
-					<driver>com.mysql.cj.jdbc.Driver</driver>
-				</configuration>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.14</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

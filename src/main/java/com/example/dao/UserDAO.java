@@ -2,10 +2,13 @@ package com.example.dao;
 
 import com.example.model.User;
 import com.example.utils.DBUtil;
-import java.sql.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UserDAO {
 	private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
@@ -14,7 +17,7 @@ public class UserDAO {
     public User findByUsername(String username) {
     	LOG.info("called findByUsername");
         try(Connection con = DBUtil.getConnection();
-        PreparedStatement ps = con.prepareStatement(
+            PreparedStatement ps = con.prepareStatement(
                 "SELECT * FROM users WHERE username=?")){
         	
         	ps.setString(1, username);
@@ -32,7 +35,7 @@ public class UserDAO {
             return u;
         	
         } catch (Exception e) {
-			e.printStackTrace();
+            LOG.error(e.getMessage());
 			return null;
 		}        
     }

@@ -44,8 +44,7 @@ public class AppConfigListener implements ServletContextListener {
 			LOG.info("HikariCP initialized successfully");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 
 	}
