@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebListener
 public class LiquibaseInitializer implements ServletContextListener {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(LiquibaseInitializer.class);

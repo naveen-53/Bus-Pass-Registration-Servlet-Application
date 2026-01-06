@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebFilter("/passes/*")
 public class AuthFilter implements Filter {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(AuthFilter.class);

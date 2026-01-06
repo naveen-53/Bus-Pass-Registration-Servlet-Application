@@ -170,3 +170,93 @@
 2026-01-05 18:28:35 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
 2026-01-05 18:28:35 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
 2026-01-05 18:28:35 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 21:20:38 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 21:20:39 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 21:20:39 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 21:20:39 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 21:20:39 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 21:20:39 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 21:20:39 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 21:20:39 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 21:20:39 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 21:20:39 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 21:20:40 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 21:20:40 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 21:20:40 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 21:20:40 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 21:20:40 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 21:21:42 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 21:21:42 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 21:21:42 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 21:21:42 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 21:21:42 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 21:21:42 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 21:21:42 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 21:21:42 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 21:21:42 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 21:21:42 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 21:21:43 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 21:21:43 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 21:21:43 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 21:21:43 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 21:21:43 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 21:42:25 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 21:42:25 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 21:42:25 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 21:42:25 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 21:42:25 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 21:42:25 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 21:42:25 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 21:42:25 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 21:42:25 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 21:42:25 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 21:42:25 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 21:42:25 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 21:42:25 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 21:42:25 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 21:42:25 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 22:06:23 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 22:06:23 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 22:06:23 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 22:06:23 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 22:06:23 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 22:06:23 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 22:06:23 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 22:06:23 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 22:06:23 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 22:06:23 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 22:06:24 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 22:06:24 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 22:06:24 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 22:06:24 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 22:06:24 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 22:18:53 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 22:18:53 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 22:18:53 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 22:18:53 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 22:18:53 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 22:18:53 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 22:18:53 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 22:18:53 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 22:18:53 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 22:18:53 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 22:18:53 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 22:18:53 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 22:18:53 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 22:18:53 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 22:18:53 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
+2026-01-06 22:19:12 INFO  com.example.dao.BusPassDAO - Select Query Executed
+2026-01-06 22:19:12 INFO  com.example.dao.BusPassDAO - BusPass Values Inserted
+2026-01-06 22:19:12 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't updated
+2026-01-06 22:19:12 ERROR com.example.dao.BusPassDAO - BusPass Values doesn't deleted
+2026-01-06 22:19:12 INFO  com.example.dao.UserDAO - called findByUsername
+2026-01-06 22:19:12 INFO  c.example.service.BusPassServiceImpl - Called Find All method
+2026-01-06 22:19:12 INFO  c.example.service.BusPassServiceImpl - TestPass retrived from table
+2026-01-06 22:19:12 INFO  c.example.service.BusPassServiceImpl - BusPass Registered
+2026-01-06 22:19:12 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 2 Updated...
+2026-01-06 22:19:12 INFO  c.example.service.BusPassServiceImpl - BusPass Id : 3 Deleted..
+2026-01-06 22:19:13 INFO  com.example.servlet.BusPassServlet - The Status was Success - BusPass retrieved for this id: 5
+2026-01-06 22:19:13 INFO  com.example.servlet.BusPassServlet - The Status was Success for created BusPass
+2026-01-06 22:19:13 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass id: 9
+2026-01-06 22:19:13 INFO  com.example.servlet.BusPassServlet - The Status was Success - All BusPasses retrieved
+2026-01-06 22:19:13 INFO  com.example.servlet.BusPassServlet - The Status was Success for Update BusPass
