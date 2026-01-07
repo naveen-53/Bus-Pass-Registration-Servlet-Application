@@ -5,6 +5,16 @@
          https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+
+	<filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>com.example.filter.LoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/passes/*</url-pattern>
+    </filter-mapping>
+    
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>com.example.filter.AuthFilter</filter-class>
@@ -50,6 +60,20 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>JsonService</servlet-name>
+        <servlet-class>com.example.servlet.JsonService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonService</servlet-name>
+        <url-pattern>/JsonErrorService</url-pattern>
+    </servlet-mapping>
+    
+    <error-page>
+	    <error-code>404</error-code>
+	    <location>/JsonErrorService</location>
+	</error-page>
+    
 
     <listener>
         <listener-class>com.example.config.AppConfigListener</listener-class>
@@ -58,6 +82,6 @@
     <listener>
         <listener-class>com.example.config.LiquibaseInitializer</listener-class>
     </listener>
-
-
+    
+    
 </web-app>

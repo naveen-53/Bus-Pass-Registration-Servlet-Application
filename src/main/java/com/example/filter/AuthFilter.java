@@ -29,13 +29,16 @@ public class AuthFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
+        
+        LOG.info("AuthFilter - checking session");
 
         HttpSession session = req.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
-        	LOG.error("Session was not Created");
+        	LOG.error("AuthFilter - Unauthorized!");
             resp.setStatus(401);
-            resp.getWriter().write("Authentication Required");
+            resp.setContentType("application/json");
+            resp.getWriter().write("{\"error\":\"Login Required\"}");
             return;
         }
         
@@ -50,5 +53,12 @@ public class AuthFilter implements Filter {
         }
 
         chain.doFilter(request, response);
+        
+        LOG.info("AuthFilter - Adding Security Headers");
+        resp.setHeader("X-Frame-Options", "DENY");
+        resp.setHeader("X-Content-Type-Options", "nosniff");
+
+        if (resp.getContentType() == null)
+            resp.setContentType("application/json;charset=UTF-8");
     }
 }

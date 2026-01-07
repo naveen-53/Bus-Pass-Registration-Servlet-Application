@@ -11,7 +11,6 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.annotation.WebListener;
 
 public class AppConfigListener implements ServletContextListener {
 	private static final Logger LOG = LoggerFactory.getLogger(AppConfigListener.class);
@@ -35,6 +34,10 @@ public class AppConfigListener implements ServletContextListener {
 			config.setDriverClassName("com.mysql.cj.jdbc.Driver");   
 			config.setMaximumPoolSize(Integer.parseInt(properties.getProperty("db.pool.size", "10")));
 			config.setConnectionTimeout(Long.parseLong(properties.getProperty("db.pool.timeout", "30000")));
+			config.setMinimumIdle(Integer.parseInt(properties.getProperty("hikari.db.pool.minimumIdle")));
+			config.setIdleTimeout(Integer.parseInt(properties.getProperty("hikari.db.pool.idleTimeout")));
+			config.setMaxLifetime(Integer.parseInt(properties.getProperty("hikari.db.pool.maxLifetime")));
+			config.setValidationTimeout(Integer.parseInt(properties.getProperty("hikari.db.pool.validationTimeout")));
 
 			dataSource = new HikariDataSource(config);
 			DBUtil.setDataSource(dataSource);

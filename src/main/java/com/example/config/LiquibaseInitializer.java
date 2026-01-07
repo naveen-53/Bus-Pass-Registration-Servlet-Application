@@ -1,19 +1,15 @@
 package com.example.config;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.annotation.WebListener;
 
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.DatabaseException;
-import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -46,9 +42,10 @@ public class LiquibaseInitializer implements ServletContextListener {
 						database)) {
 
 					liquibase.update();
+					LOG.info("Liquibase started");
 				}
 
-				System.out.println("Liquibase executed automatically!");
+				LOG.info("Liquibase executed automatically!");
 			}
 
 		}catch (Exception e) {
