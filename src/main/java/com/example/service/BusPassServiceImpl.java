@@ -3,8 +3,16 @@ package com.example.service;
 import com.example.dao.BusPassDAO;
 import com.example.model.BusPass;
 
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Destination;
+import jakarta.jms.MessageProducer;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
+
 import java.util.List;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +53,7 @@ public class BusPassServiceImpl implements BusPassService {
         try { 
         	dao.save(pass);
         	LOG.info("BusPass Registered");
+        	sendMessage(pass.getEmail(), pass.getName());
         }
         catch (Exception e) { 
         	throw new RuntimeException(e); 
@@ -70,4 +79,37 @@ public class BusPassServiceImpl implements BusPassService {
         }
         catch (Exception e) { throw new RuntimeException(e); }
     }
+    
+    private void sendMessage(String email, String name) {
+
+        try {
+            ConnectionFactory factory =
+                    new ActiveMQConnectionFactory("tcp://localhost:61616");
+
+            Connection connection = factory.createConnection();
+            connection.start();
+
+            Session session =
+                    connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+
+            Destination queue = session.createQueue("busPassEmailQueue");
+            
+            MessageProducer producer = session.createProducer(queue);
+
+            String data = email + ";" + name;
+
+            TextMessage message = session.createTextMessage(data);
+
+            producer.send(message);
+
+            session.close();
+            connection.close();
+
+            LOG.info("Message sent to ActiveMQ Queue");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

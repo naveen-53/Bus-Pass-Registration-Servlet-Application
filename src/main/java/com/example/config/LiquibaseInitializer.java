@@ -37,7 +37,7 @@ public class LiquibaseInitializer implements ServletContextListener {
 						.findCorrectDatabaseImplementation(jdbcConnection);
 
 				try (Liquibase liquibase = new Liquibase(
-						"db/changelog/db.changelog-master.xml",
+						properties.getProperty("liquibase.changeLogFile"),
 						new ClassLoaderResourceAccessor(),
 						database)) {
 

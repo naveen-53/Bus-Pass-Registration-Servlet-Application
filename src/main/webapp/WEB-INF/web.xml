@@ -83,5 +83,9 @@
         <listener-class>com.example.config.LiquibaseInitializer</listener-class>
     </listener>
     
+    <listener>
+        <listener-class>com.example.config.BusPassEmailConsumer</listener-class>
+    </listener>
+    
     
 </web-app>
