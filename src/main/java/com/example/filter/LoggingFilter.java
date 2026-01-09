@@ -2,6 +2,9 @@ package com.example.filter;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class LoggingFilter implements Filter{
+	
+	private static final Logger LOG = LoggerFactory.getLogger(LoggingFilter.class);
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -18,14 +23,14 @@ public class LoggingFilter implements Filter{
 		
 		 HttpServletRequest req = (HttpServletRequest) request;
 		 
-		 System.out.println("LoggingFilter - Incoming Request: " + req.getRequestURI());
+		 LOG.info("LoggingFilter - Incoming Request: " + req.getRequestURI());
 
 	     long start = System.currentTimeMillis();
 	     
 	     chain.doFilter(request, response);
 	     
 	     long time = System.currentTimeMillis() - start;
-         System.out.println("LoggingFilter - Response completed in " + time + " ms");
+         LOG.info("LoggingFilter - Response completed in " + time + " ms");
 	     HttpServletResponse res = (HttpServletResponse) response;
 	     
 	     res.setHeader("X-App", "Employee-Service");

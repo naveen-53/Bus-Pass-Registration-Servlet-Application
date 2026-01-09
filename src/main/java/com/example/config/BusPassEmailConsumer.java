@@ -10,13 +10,20 @@ import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Destination;
 import jakarta.jms.MessageConsumer;
 import jakarta.jms.TextMessage;
-
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import java.util.Properties;
 
 public class BusPassEmailConsumer implements ServletContextListener {
+	
+	 //Note : if you want to use this you should disable the Topic Active MQ OfferEmailConsumerListener in web.xml
+
 
     private Connection connection;
 

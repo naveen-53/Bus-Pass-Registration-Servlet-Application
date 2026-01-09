@@ -1,6 +1,8 @@
-package com.example.config;
+package com.example.service;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import jakarta.jms.Connection;
 import jakarta.jms.ConnectionFactory;
@@ -10,20 +12,19 @@ import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
 public class OfferProducer {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(OfferProducer.class); 
 
     public static void publishOffer(String offerMessage) {
 
         try {
-            ConnectionFactory factory =
-                    new ActiveMQConnectionFactory("tcp://localhost:61616");
+            ConnectionFactory factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 
             Connection connection = factory.createConnection();
             connection.start();
 
-            Session session =
-                    connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-            // 🔴 THIS IS THE KEY DIFFERENCE (TOPIC)
             Topic topic = session.createTopic("busPassOfferTopic");
 
             MessageProducer producer = session.createProducer(topic);
@@ -35,10 +36,12 @@ public class OfferProducer {
             session.close();
             connection.close();
 
-            System.out.println("Offer published to topic");
+            LOG.info("Offer published to topic");
 
         } catch (Exception e) {
+        	
             e.printStackTrace();
         }
     }
 }
+

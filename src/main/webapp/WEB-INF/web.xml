@@ -60,6 +60,7 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>JsonService</servlet-name>
         <servlet-class>com.example.servlet.JsonService</servlet-class>
@@ -67,6 +68,15 @@
     <servlet-mapping>
         <servlet-name>JsonService</servlet-name>
         <url-pattern>/JsonErrorService</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>OfferUploadServlet</servlet-name>
+        <servlet-class>com.example.servlet.OfferUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OfferUploadServlet</servlet-name>
+        <url-pattern>/offer</url-pattern>
     </servlet-mapping>
     
     <error-page>
@@ -83,9 +93,15 @@
         <listener-class>com.example.config.LiquibaseInitializer</listener-class>
     </listener>
     
+    
     <listener>
-        <listener-class>com.example.config.BusPassEmailConsumer</listener-class>
+        <listener-class>com.example.config.OfferEmailConsumerListener</listener-class>
     </listener>
+    
+   <!--  <listener>
+        <listener-class>com.example.config.BusPassEmailConsumer</listener-class>
+    </listener> -->
+    
     
     
 </web-app>
