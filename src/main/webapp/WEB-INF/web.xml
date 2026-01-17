@@ -23,6 +23,8 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/passes/*</url-pattern>
     </filter-mapping>
+    
+
 
 
     <servlet>
@@ -42,6 +44,16 @@
         <servlet-name>BusPassServlet</servlet-name>
         <url-pattern>/passes/*</url-pattern>
     </servlet-mapping>
+    
+    
+    <servlet>
+	    <servlet-name>BusPassPdfServlet</servlet-name>
+	    <servlet-class>com.example.servlet.BusPassPdfServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>BusPassPdfServlet</servlet-name>
+	    <url-pattern>/passesPdf/*</url-pattern>
+	</servlet-mapping>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
@@ -101,7 +113,5 @@
    <!--  <listener>
         <listener-class>com.example.config.BusPassEmailConsumer</listener-class>
     </listener> -->
-    
-    
     
 </web-app>
