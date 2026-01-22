@@ -96,4 +96,15 @@ The project uses:
 - Execution: Migrations trigger automatically on application startup via the Servlet Listener configured in web.xml.
 - Development: To update the schema, add new changesets to the changelog directory before restarting the server.
 
+---
+## Docker Implementation
+- Use this for run docker
+```
+docker compose up -d --build
+```
+- Use this for stop docker
+```
+docker compose down -v
+```
+
 
