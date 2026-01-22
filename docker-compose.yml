@@ -1,0 +1,42 @@
+version: "3.9"
+ 
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: buspass-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: bus_pass_db
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+ 
+  activemq:
+    image: apache/activemq:6.2.0
+    container_name: buspass-activemq
+    restart: always
+    ports:
+      - "61616:61616"   # JMS
+      - "8161:8161"     # Web Console
+    environment:
+      - ARTEMIS_USERNAME=admin
+      - ARTEMIS_PASSWORD=admin
+ 
+  app:
+    build: .
+    container_name: buspass-app
+    restart: always
+    depends_on:
+      - mysql
+      - activemq
+    ports:
+      - "8080:8080"
+    environment:
+      # Optional: if you want to inject config via env later
+      - TZ=Asia/Kolkata
+ 
+volumes:
+  mysql_data:
+ 
